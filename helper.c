@@ -8,7 +8,7 @@
  */
 int print_char(char c)
 {
-    return (_putchar(c));
+	return (_putchar(c));
 }
 
 /**
@@ -19,19 +19,20 @@ int print_char(char c)
  */
 int print_string(char *str)
 {
-    int i;
+	int i;
 
-    if (str == NULL)
-        str = "(null)";
+	if (str == NULL)
+	{
+		str = "(null)";
+	}
+	i = 0;
+	while (str[i] != '\0')
+	{
+		_putchar(str[i]);
+		i++;
+	}
 
-    i = 0;
-    while (str[i] != '\0')
-    {
-        _putchar(str[i]);
-        i++;
-    }
-
-    return (i);
+	return (i);
 }
 
 /**
@@ -44,12 +45,12 @@ int print_string(char *str)
 int print_int(int n)
 {
 	int count;
-	insigned int num;
+	unsigned int num;
 
 	count = 0;
 	if (n < 0)
 	{
-		write(1, "-", 1);
+		_putchar('-');
 		count++;
 		num = -n;
 	}
@@ -61,7 +62,7 @@ int print_int(int n)
 	{
 		count += print_int(num / 10);
 	}
-	write (1, &"0123456789"[num % 10], 1);
+	_putchar("0123456789"[num % 10]);
 	count++;
 	return (count);
 }
