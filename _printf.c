@@ -31,12 +31,36 @@ int _printf(const char *format , ...)
 			i++;
 		}
 
-		if (format[i] == '%')
+		else if (format[i] == '%')
 		{
+			if (format[i + 1] == 'c')
+			{
+				count += print_char (va_arg(args, int));
+				i += 2;
+			}	
 
+			else if (format[i + 1] == 's')
+			{
+				count += print_string (va_arg(args, char *));
+				i += 2;
+			}
+
+			else if (format[i + 1] == '%')
+			{
+				count += print_char('%');
+				i += 2;
+			}
+
+			else if (format[i + 1] == 'd' || format[i +1] == 'i')
+			{
+				count += print_int (va_arg(args, int));
+				i += 2;
+			}
 		}
 
 	}
+	va_end(args);
+	return (count);
 
 
 }
