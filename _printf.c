@@ -63,7 +63,10 @@ int _printf(const char *format, ...)
 		else if (format[i] == '%')
 		{
 			if (format[i + 1] == '\0')
-				break;
+			{
+				va_end(args);
+				return (-1);
+			}
 			count += handle_specifier(format, i, args);
 			i += 2;
 		}
