@@ -33,3 +33,35 @@ int print_string(char *str)
 
     return (i);
 }
+
+/**
+ * print_int - print integer
+ * @n: the integer to print
+ *
+ * Return: number of characters printed
+ */
+
+int print_int(int n)
+{
+	int count;
+	insigned int num;
+
+	count = 0;
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		count++;
+		num = -n;
+	}
+	else
+	{
+		num = n;
+	}
+	if (num / 10 != 0)
+	{
+		count += print_int(num / 10);
+	}
+	write (1, &"0123456789"[num % 10], 1);
+	count++;
+	return (count);
+}
