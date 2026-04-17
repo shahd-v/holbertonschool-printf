@@ -10,6 +10,8 @@
  */
 int handle_specifier(const char *format, int i, va_list args)
 {
+	int count;
+
 	count = 0;
 	if (format[i + 1] == 'c')
 		count += print_char(va_arg(args, int));
@@ -19,6 +21,13 @@ int handle_specifier(const char *format, int i, va_list args)
 		count += print_char('%');
 	else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		count += print_int(va_arg(args, int));
+	else if (format[i + 1] == '\0')
+		count = -1;
+	else
+	{
+		count += print_char('%');
+		count += print_char(format[i + 1]);
+	}
 	return (count);
 }
 
@@ -37,11 +46,10 @@ int _printf(const char *format, ...)
 
 	i = 0;
 	count = 0;
-	va_start(args, format);
+
 	if (format == NULL)
-	{
 		return (-1);
-	}
+	va_start(args, format);
 
 	while (format[i] != '\0')
 	{
@@ -54,9 +62,10 @@ int _printf(const char *format, ...)
 
 		else if (format[i] == '%')
 		{
+			if (format[i + 1] == '\0')
+				break;
 			count += handle_specifier(format, i, args);
 			i += 2;
-
 		}
 
 	}
