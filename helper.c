@@ -83,3 +83,74 @@ int print_binary(unsigned int n)
 	count++;
 	return (count);
 }
+/**
+ * print_unsigned - prints an unsigned integer
+ * @n: the unsigned integer to print
+ *
+ * Return: number of characters printed
+ */
+int print_unsigned(unsigned int n)
+{
+	int count;
+
+	count = 0;
+	if (n / 10 != 0)
+		count += print_unsigned(n / 10);
+	_putchar('0' + (n % 10));
+	count++;
+	return (count);
+}
+
+/**
+ * print_octal - prints an unsigned integer in octal
+ * @n: the unsigned integer to convert
+ *
+ * Return: number of characters printed
+ */
+int print_octal(unsigned int n)
+{
+	int count;
+
+	count = 0;
+	if (n / 8 != 0)
+		count += print_octal(n / 8);
+	_putchar('0' + (n % 8));
+	count++;
+	return (count);
+}
+
+/**
+ * print_hex - prints an unsigned integer in lowercase hexadecimal
+ * @n: the unsigned integer to convert
+ *
+ * Return: number of characters printed
+ */
+int print_hex(unsigned int n)
+{
+	int count;
+
+	count = 0;
+	if (n / 16 != 0)
+		count += print_hex(n / 16);
+	_putchar("0123456789abcdef"[n % 16]);
+	count++;
+	return (count);
+}
+
+/**
+ * print_HEX - prints an unsigned integer in uppercase hexadecimal
+ * @n: the unsigned integer to convert
+ *
+ * Return: number of characters printed
+ */
+int print_HEX(unsigned int n)
+{
+	int count;
+
+	count = 0;
+	if (n / 16 != 0)
+		count += print_HEX(n / 16);
+	_putchar("0123456789ABCDEF"[n % 16]);
+	count++;
+	return (count);
+}

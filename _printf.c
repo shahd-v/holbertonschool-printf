@@ -25,6 +25,14 @@ int handle_specifier(const char *format, int i, va_list args)
 		count = -1;
 	else if (format[i + 1] == 'b')
 		count += print_binary(va_arg(args, unsigned int));
+	else if (format[i + 1] == 'u')
+		count += print_unsigned(va_arg(args, unsigned int));
+	else if (format[i + 1] == 'o')
+		count += print_octal(va_arg(args, unsigned int));
+	else if (format[i + 1] == 'x')
+       		count += print_hex(va_arg(args, unsigned int));
+	else if (format[i + 1] == 'X')
+       		count += print_HEX(va_arg(args, unsigned int));
 	else
 	{
 		count += print_char('%');
