@@ -23,6 +23,8 @@ int handle_specifier(const char *format, int i, va_list args)
 		count += print_int(va_arg(args, int));
 	else if (format[i + 1] == '\0')
 		count = -1;
+	else if (format[i + 1] == 'b')
+		count += print_binary(va_arg(args, unsigned int));
 	else
 	{
 		count += print_char('%');
